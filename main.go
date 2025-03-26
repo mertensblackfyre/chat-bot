@@ -3,7 +3,8 @@ package main
 
 func main() {
 
-    Discord()
+    GeminiAI("Hello")
+    //Discord()
 }
 
 

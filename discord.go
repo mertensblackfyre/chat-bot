@@ -10,7 +10,7 @@ import (
 )
 
 func Discord() {
-	dg, err := discordgo.New("Bot " + Token)
+	dg, err := discordgo.New("Bot " + DISCORD_KEY)
 
 	if err != nil {
 		fmt.Println("Error creating Discord session,", err)
@@ -18,8 +18,8 @@ func Discord() {
 	}
 
 	dg.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
-	
-        SendMessages(s,m)
+
+		SendMessages(s, m)
 
 	})
 
@@ -33,8 +33,8 @@ func Discord() {
 	}
 
 	fmt.Println("AetherAI is online")
-	
-    defer dg.Close()
+
+	defer dg.Close()
 
 	sc := make(chan os.Signal, 1)
 	signal.Notify(sc, syscall.SIGINT, syscall.SIGTERM, os.Interrupt)
@@ -43,27 +43,6 @@ func Discord() {
 }
 
 func SendMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
-	payload := map[string]interface{}{
-		"model": "gemma:2b",
-		"messages": []map[string]interface{}{
-			{
-				"role":    "user",
-				"content": "",
-			},
-		},
-		"stream": false,
-	}
-
-	messages, ok := payload["messages"].([]map[string]interface{})
-
-	if !ok {
-		fmt.Println("Error: Unable to assert type for 'messages'")
-		return
-	}
-
-	if len(messages) > 0 {
-		messages[0]["content"] = m.Content
-	}
 
 	if m.Author.ID == s.State.User.ID {
 		return
@@ -72,9 +51,9 @@ func SendMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 	fmt.Println(m.Content)
 
 	//c := Parser(OpenAI(p))
-
+	GeminiAI("Hello")
 	if m.Content != "" {
-		s.ChannelMessageSend(m.ChannelID, GeminiAI(m.Content))
+		s.ChannelMessageSend(m.ChannelID, "Hello")
 	}
 
 }

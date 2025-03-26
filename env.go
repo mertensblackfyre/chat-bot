@@ -8,10 +8,10 @@ import (
 )
 
 var (
-	Token        string
-	GEMINIAPIKEY string
-	OPENAI       string
-	role         string = "Your my arabic tutor. You will help me improve my arabic skills by speaking in Arabic and correcting my spellings and grammer in English."
+	DISCORD_KEY    string
+	GEMINI_API_KEY string
+	OPEN_AI        string
+	role           string = "Hello"
 )
 
 func init() {
@@ -20,8 +20,6 @@ func init() {
 		fmt.Println("Error loading .env file")
 	}
 
-	Token = os.Getenv("DISCORD_KEY")
-	OPENAI = os.Getenv("KEY")
-
-	GEMINIAPIKEY = os.Getenv("GEMINI_API_KEY")
+	DISCORD_KEY = os.Getenv("DISCORD_KEY")
+	GEMINI_API_KEY = os.Getenv("GEMINI_API_KEY")
 }

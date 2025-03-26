@@ -1,0 +1,14 @@
+[
+  {
+    "Parts": [
+      "Hello, I have 2 dogs in my house."
+    ],
+    "Role": "user"
+  },
+  {
+    "Parts": [
+      "Great to meet you. What would you like to know?"
+    ],
+    "Role": "model"
+  }
+]
