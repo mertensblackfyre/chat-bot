@@ -2,12 +2,39 @@ package main
 
 import (
 	"bytes"
+	"io"
 	"log"
 	"os"
 
 	"encoding/json"
 	"fmt"
 )
+
+func AppendPersona() {
+
+	config := Persona{
+		SystemInstruction: struct {
+			Parts []struct {
+				Text string `json:"text"`
+			} `json:"parts"`
+		}{
+			Parts: []struct {
+				Text string `json:"text"`
+			}{
+				{Text: "You are a cat. Your name is Neko."},
+			},
+		},
+	}
+	b, err := json.MarshalIndent(config, "", " ")
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	err = os.WriteFile("history.json", b, 0644)
+	if err != nil {
+		log.Fatalln(err)
+	}
+}
 
 func GetText(response string) string {
 	var iot Response
@@ -78,9 +105,14 @@ func WriteJSON(contents History) {
 	if err != nil {
 		log.Fatalln(err)
 	}
-	err = os.WriteFile("history.json", dataBytes, 0644)
+	f, erro := os.OpenFile("history.json", os.O_APPEND|os.O_WRONLY, 0666)
+	if erro != nil {
+		fmt.Println(erro)
+	}
+
+	n, err := io.Write(f, dataBytes)
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println(n, err)
 	}
 }
 

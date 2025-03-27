@@ -11,6 +11,7 @@ import (
 
 func Gemini(message string) string {
 
+	AppendPersona()
 	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY
 
 	AppendMessage(message, "user")
@@ -26,6 +27,9 @@ func Gemini(message string) string {
 	}
 
 	sb := string(body)
+	log.Println(sb)
+
+	AppendPersona()
 	text := AppendMessage(sb, "model")
 	return text
 }

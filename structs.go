@@ -27,6 +27,13 @@ type Response struct {
 	ModelVersion string `json:"modelVersion"`
 }
 
+type Persona struct {
+	SystemInstruction struct {
+		Parts []struct {
+			Text string `json:"text"`
+		} `json:"parts"`
+	} `json:"system_instruction"`
+}
 type History struct {
 	Contents []struct {
 		Role  string `json:"role"`
@@ -34,14 +41,6 @@ type History struct {
 			Text string `json:"text"`
 		} `json:"parts"`
 	} `json:"contents"`
-}
-
-type Persona struct {
-	SystemInstruction struct {
-		Parts []struct {
-			Text string `json:"text"`
-		} `json:"parts"`
-	} `json:"system_instruction"`
 }
 
 type Settings struct {
