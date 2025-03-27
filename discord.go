@@ -18,9 +18,7 @@ func Discord() {
 	}
 
 	dg.AddHandler(func(s *discordgo.Session, m *discordgo.MessageCreate) {
-
 		SendMessages(s, m)
-
 	})
 
 	dg.Identify.Intents = discordgo.IntentsAllWithoutPrivileged
@@ -32,7 +30,7 @@ func Discord() {
 		return
 	}
 
-	fmt.Println("AetherAI is online")
+	fmt.Println("--AI is online--")
 
 	defer dg.Close()
 
@@ -50,9 +48,9 @@ func SendMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 
 	fmt.Println(m.Content)
 
-	//c := Parser(OpenAI(p))
-	GeminiAI("Hello")
 	if m.Content != "" {
+
+        Gemein(m.Content)
 		s.ChannelMessageSend(m.ChannelID, "Hello")
 	}
 
