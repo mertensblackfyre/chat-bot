@@ -26,15 +26,30 @@ type Response struct {
 	} `json:"usageMetadata"`
 	ModelVersion string `json:"modelVersion"`
 }
+
 type History struct {
 	Contents []struct {
-		HistotryItem
+		Role  string `json:"role"`
+		Parts []struct {
+			Text string `json:"text"`
+		} `json:"parts"`
 	} `json:"contents"`
 }
 
-type HistotryItem struct {
-	Role  string `json:"role"`
-	Parts []struct {
-		Text string `json:"text"`
-	} `json:"parts"`
+type Persona struct {
+	SystemInstruction struct {
+		Parts []struct {
+			Text string `json:"text"`
+		} `json:"parts"`
+	} `json:"system_instruction"`
+}
+
+type Settings struct {
+	GenerationConfig struct {
+		StopSequences   []string `json:"stopSequences"`
+		Temperature     float64  `json:"temperature"`
+		MaxOutputTokens int      `json:"maxOutputTokens"`
+		TopP            float64  `json:"topP"`
+		TopK            int      `json:"topK"`
+	} `json:"generationConfig"`
 }

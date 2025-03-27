@@ -9,9 +9,11 @@ import (
 	"net/http"
 )
 
-func Gemein(message string) {
+func Gemini(message string) string {
 
 	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY
+
+	AppendMessage(message, "user")
 	history := JSONInterface()
 
 	resp, err := http.Post(url, "application/json", history)
@@ -24,7 +26,8 @@ func Gemein(message string) {
 	}
 
 	sb := string(body)
-    GetText(sb)
+	text := AppendMessage(sb, "model")
+	return text
 }
 func Ollama(payload string) string {
 

@@ -9,8 +9,7 @@ import (
 	"fmt"
 )
 
-func GetText(response string) {
-
+func GetText(response string) string {
 	var iot Response
 	err := json.Unmarshal([]byte(response), &iot)
 	if err != nil {
@@ -18,24 +17,31 @@ func GetText(response string) {
 	}
 
 	candidates := iot.Candidates
+
+	if len(candidates) == 0 {
+		log.Println("No Value")
+		return ""
+	}
+
+	if len(candidates[0].Content.Parts) == 0 {
+		log.Println("No Value 2")
+		return ""
+	}
+
 	text := candidates[0].Content.Parts[0].Text
 
-	data := &HistotryItem{
-		Role: "user",
-		Parts: []struct {
-			Text string `json:"text"`
-		}{
-			{Text: text},
-		},
+	return text
+}
+
+func AppendMessage(response string, role string) string {
+
+	var text string
+	if role == "model" {
+		text = GetText(response)
+	} else {
+		text = response
 	}
-/*
-	b, err := json.Marshal(data)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-    fmt.Println(b)
-*/
+
 	file, err := os.ReadFile("history.json")
 	if err != nil {
 		fmt.Println("Error reading file:", err)
@@ -47,12 +53,24 @@ func GetText(response string) {
 	if err != nil {
 		fmt.Println(err)
 	}
+	d.Contents = append(d.Contents,
+		struct {
+			Role  string `json:"role"`
+			Parts []struct {
+				Text string `json:"text"`
+			} `json:"parts"`
+		}{
+			Role: role,
+			Parts: []struct {
+				Text string `json:"text"`
+			}{
+				{Text: text},
+			},
+		})
 
-    d = append(d,data...)
+	WriteJSON(d)
 
-
-}
-func AppendHistory() {
+	return text
 
 }
 func WriteJSON(contents History) {

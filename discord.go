@@ -46,12 +46,9 @@ func SendMessages(s *discordgo.Session, m *discordgo.MessageCreate) {
 		return
 	}
 
-	fmt.Println(m.Content)
-
 	if m.Content != "" {
-
-        Gemein(m.Content)
-		s.ChannelMessageSend(m.ChannelID, "Hello")
+		message := Gemini(m.Content)
+		s.ChannelMessageSend(m.ChannelID, message)
 	}
 
 }

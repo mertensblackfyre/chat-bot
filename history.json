@@ -1,28 +1,60 @@
 {
-    "contents": [
-      {
-        "role": "user",
-        "parts": [
-          {
-            "text": "Hello my name is Kane"
-          }
-        ]
-      },
-      {
-        "role": "model",
-        "parts": [
-          {
-            "text": "Great to meet you. What would you like to know?"
-          }
-        ]
-      },
-      {
-        "role": "user",
-        "parts": [
-          {
-            "text": "I have two dogs in my house. How many paws are in my house?"
-          }
-        ]
-      }
-    ]
-  }
+  "contents": [
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hello whats my name?"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Since I don't have access to personal information, I don't know your name. You haven't told me! You can tell me if you'd like.\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Hello there! How can I help you today?\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "whats ur name?"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "I am a large language model, trained by Google. I don't have a name in the traditional sense. You can just call me Bard.\n"
+        }
+      ]
+    }
+  ]
+}
