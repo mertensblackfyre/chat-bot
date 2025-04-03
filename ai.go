@@ -11,10 +11,11 @@ import (
 
 func Gemini(message string) string {
 
-	AppendPersona()
 	url := "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=" + GEMINI_API_KEY
 
+	WriteSystemInstructions()
 	AppendMessage(message, "user")
+	WriteHistory()
 	history := JSONInterface()
 
 	resp, err := http.Post(url, "application/json", history)
@@ -29,8 +30,9 @@ func Gemini(message string) string {
 	sb := string(body)
 	log.Println(sb)
 
-	AppendPersona()
 	text := AppendMessage(sb, "model")
+
+	WriteHistory()
 	return text
 }
 func Ollama(payload string) string {
@@ -46,7 +48,6 @@ func Ollama(payload string) string {
 	}
 
 	req.Header.Add("Content-Type", "application/json")
-	//req.Header.Add("Authorization", "Bearer "+OPENAI)
 
 	resp, err := client.Do(req)
 	if err != nil {

@@ -34,6 +34,7 @@ type Persona struct {
 		} `json:"parts"`
 	} `json:"system_instruction"`
 }
+
 type History struct {
 	Contents []struct {
 		Role  string `json:"role"`
