@@ -8,7 +8,6 @@ import (
 
 	"github.com/bwmarrin/discordgo"
 )
-
 func Discord() {
 	dg, err := discordgo.New("Bot " + DISCORD_KEY)
 

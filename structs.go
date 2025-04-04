@@ -26,7 +26,6 @@ type Response struct {
 	} `json:"usageMetadata"`
 	ModelVersion string `json:"modelVersion"`
 }
-
 type Persona struct {
 	SystemInstruction struct {
 		Parts []struct {

@@ -1,160 +1,102 @@
 {
-  "contents": {
-    "contents": [
-      {
-        "parts": [
-          {
-            "text": "Hello World"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello there! How can I help you today?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "nothing much"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Alright! If you need anything in the future, just let me know. Have a great day!\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "how are u ?"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "I am doing well, thank you for asking! As a large language model, I don't experience emotions or feelings like humans do, but I'm functioning as intended and ready to assist you. How are you doing today?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "i am working on building a chat bot"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "That's fantastic! Building chatbots can be a really rewarding and challenging project. What stage are you at in the development process? Are you just starting, have you chosen a framework, or are you working on specific features? I'd be happy to offer some advice or resources depending on what you're working on.\n\nTell me more about your chatbot.  What's its purpose?  What kind of technology are you using?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "im using golang"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "That's a great choice! Go is a powerful and efficient language, well-suited for building scalable and reliable chatbots.\n\nHere are some things that might be helpful to you in building a Go-based chatbot:\n\n**Key Areas to Consider:**\n\n*   **Framework/Library Selection:**\n    *   **Slack Bolt for Go:** A good option if you're building for Slack. Simplifies event handling and interaction with the Slack API.\n    *   **Discordgo:** A popular library for building Discord bots.\n    *   **Telegram Bot API:** Allows interaction with Telegram.\n    *   **Generic Webhook/API Server:** If you're building a chatbot that integrates with a custom platform or uses a more generic webhook approach, you might not need a specific framework but will rely on Go's built-in `net/http` package and a routing library like `gorilla/mux` or `chi`.\n*   **Natural Language Processing (NLP):**\n    *   **Dialogflow (Google Cloud):** Can be integrated via an API.  You train Dialogflow to understand user intents, and your Go chatbot interacts with it.\n    *   **Rasa:** An open-source conversational AI framework.  More complex to set up but offers more control over your NLP model.  You'd likely interact with Rasa's API from your Go code.\n    *   **wit.ai (Meta):** Another NLP platform similar to Dialogflow.\n    *   **Go-specific NLP libraries:** There are some smaller Go NLP libraries, but they are less mature and generally require more work to train and use effectively.\n*   **State Management:**\n    *   **In-memory:** For simple bots, you might store user state in memory (e.g., using a `map`).  This is not suitable for production.\n    *   **Redis:** A popular in-memory data store that is fast and reliable for storing user session data.\n    *   **Database (PostgreSQL, MySQL, etc.):** For persistent storage of user data and bot configurations.\n*   **Message Queuing (Optional but useful for scaling):**\n    *   **RabbitMQ:** A robust message broker for handling asynchronous tasks and distributing messages to different parts of your application.\n    *   **Kafka:** Another powerful message broker, often used for high-throughput applications.\n*   **Deployment:**\n    *   **Docker:** Containerization is highly recommended for consistent deployments.\n    *   **Cloud Platforms (AWS, Google Cloud, Azure):** Offer various services for deploying and scaling your chatbot.\n\n**Example Snippet (Basic HTTP Server):**\n\n```go\npackage main\n\nimport (\n\t\"fmt\"\n\t\"log\"\n\t\"net/http\"\n)\n\nfunc handler(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprintf(w, \"Hello, World from Go Chatbot!\")\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/\", handler)\n\tfmt.Println(\"Server listening on port 8080\")\n\tlog.Fatal(http.ListenAndServe(\":8080\", nil))\n}\n```\n\n**Key Questions to Consider for Your Chatbot:**\n\n*   **What platform are you targeting (Slack, Discord, Telegram, web, etc.)?**\n*   **What kind of interactions will it handle (simple commands, complex conversations)?**\n*   **Do you need to remember user context between interactions?**\n*   **What external data sources or APIs will it need to access?**\n\nTell me more about your project and I can give you more specific advice. What are you struggling with right now? Are you having trouble choosing a framework, understanding NLP, or something else?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello! How can I help you today?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello! Is there anything I can do for you? Just let me know what you need.\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello!  I'm here.  How can I assist you?\n"
-          }
-        ],
-        "role": "model"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello"
-          }
-        ],
-        "role": "user"
-      },
-      {
-        "parts": [
-          {
-            "text": "Hello! I'm still here and ready to help. Please let me know what you'd like to talk about or what you need assistance with.\n"
-          }
-        ],
-        "role": "model"
-      }
-    ]
-  },
+  "contents": [
+    {
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello there! How can I help you today?\n"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "I am a large language model, trained by Google. I don't have a name in the traditional sense. You can just call me Google's AI.\n"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello! How can I help you today?\n"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "I don't have a name. I'm a large language model, trained by Google.\n"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "Hello! How can I assist you today?\n"
+        }
+      ],
+      "role": "model"
+    },
+    {
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ],
+      "role": "user"
+    },
+    {
+      "parts": [
+        {
+          "text": "I am a large language model, trained by Google. I don't have a personal name.\n"
+        }
+      ],
+      "role": "model"
+    }
+  ],
   "system_instruction": {
     "parts": [
       {

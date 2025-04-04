@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"io"
 	"log"
 	"os"
 
@@ -9,13 +10,60 @@ import (
 	"fmt"
 )
 
-
 func WriteParameters() {
 }
 
+func Write2() {
+	sys_file, err := os.Open("sys.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	history_file, err := os.Open("history.json")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	defer sys_file.Close()
+	defer history_file.Close()
+	sys_bytes, _ := io.ReadAll(sys_file)
+	his_bytes, _ := io.ReadAll(history_file)
+
+	// 3. Parse both JSON files
+	var sys map[string]any
+	var history map[string]any
+
+	var merged map[string]any
+	json.Unmarshal(his_bytes, &history)
+	json.Unmarshal(sys_bytes, &sys)
+
+	// Initialize merged if nil
+	merged = make(map[string]any)
+
+	// Copy from his to merged (overriding existing keys)
+	for key, value := range history {
+		merged[key] = value
+	}
+	for key, value := range sys {
+		merged[key] = value
+	}
+
+	// 5. Write merged result back to file
+	mergedData, err := json.MarshalIndent(merged, "", "  ")
+	if err != nil {
+		fmt.Printf("Error marshaling merged config: %v\n", err)
+		return
+	}
+
+	if err := os.WriteFile("payload.json", mergedData, 0644); err != nil {
+		fmt.Printf("Error writing merged config: %v\n", err)
+		return
+	}
+}
 func WriteHistory() {
-// 1. Read main config file
+	// 1. Read main config file
 	mainConfig, err := os.ReadFile("payload.json")
+
 	if err != nil {
 		fmt.Printf("Error reading main config: %v\n", err)
 		return
@@ -31,21 +79,21 @@ func WriteHistory() {
 	var mainData map[string]any
 	var constsData map[string]any
 
+	if err := json.Unmarshal(constsConfig, &constsData); err != nil {
+		fmt.Printf("Error parsing consts config: %v\n", err)
+		return
+	}
 	if err := json.Unmarshal(mainConfig, &mainData); err != nil {
 		fmt.Printf("Error parsing main config: %v\n", err)
 		return
 	}
 
-	if err := json.Unmarshal(constsConfig, &constsData); err != nil {
-		fmt.Printf("Error parsing consts config: %v\n", err)
-		return
-	}
-
+	constsData["system_insturctions"] = mainData
 	// 4. Merge the consts into main config
-	mainData["contents"] = constsData
+	//mainData["contents"] = constsData
 
 	// 5. Write merged result back to file
-	mergedData, err := json.MarshalIndent(mainData, "", "  ")
+	mergedData, err := json.MarshalIndent(constsData, "", "  ")
 	if err != nil {
 		fmt.Printf("Error marshaling merged config: %v\n", err)
 		return
@@ -178,7 +226,7 @@ func WriteJSON(contents History) {
 }
 
 func JSONInterface() *bytes.Buffer {
-	file, err := os.ReadFile("history.json")
+	file, err := os.ReadFile("payload.json")
 	if err != nil {
 		fmt.Println("Error reading file:", err)
 	}

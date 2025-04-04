@@ -4,9 +4,97 @@
       "role": "user",
       "parts": [
         {
-          "text": "Hello World"
+          "text": "Hello"
         }
       ]
     },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Hello there! How can I help you today?\n"
+        }
       ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "I am a large language model, trained by Google. I don't have a name in the traditional sense. You can just call me Google's AI.\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Hello! How can I help you today?\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "I don't have a name. I'm a large language model, trained by Google.\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "Hello"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "Hello! How can I assist you today?\n"
+        }
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        {
+          "text": "whats ur name"
+        }
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        {
+          "text": "I am a large language model, trained by Google. I don't have a personal name.\n"
+        }
+      ]
+    }
+  ]
 }

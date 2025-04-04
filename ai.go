@@ -15,7 +15,8 @@ func Gemini(message string) string {
 
 	WriteSystemInstructions()
 	AppendMessage(message, "user")
-	WriteHistory()
+	//WriteHistory()
+	Write2()
 	history := JSONInterface()
 
 	resp, err := http.Post(url, "application/json", history)
@@ -32,7 +33,8 @@ func Gemini(message string) string {
 
 	text := AppendMessage(sb, "model")
 
-	WriteHistory()
+	Write2()
+	//WriteHistory()
 	return text
 }
 func Ollama(payload string) string {
